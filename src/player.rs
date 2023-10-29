@@ -6,8 +6,6 @@ pub struct PlayerPlugin;
 #[derive(Component)]
 struct CharacterController;
 
-const MOVE_SPEED: f32 = 2.5;
-
 impl Plugin for PlayerPlugin {
     fn build(&self, app: &mut App) {
         app.add_systems(Startup, setup);
@@ -41,6 +39,11 @@ fn character_movement(
     time: Res<Time>,
 ) {
     let mut transform = query.single_mut();
+    let mut move_speed 2.5;
+
+    if keyboard_input.pressed(KeyCode::ShiftLeft) {
+        MOVE_SPEED = 5.0;
+    }
 
     let mut direction = Vec3::ZERO;
     if keyboard_input.pressed(KeyCode::W) {
@@ -58,6 +61,6 @@ fn character_movement(
 
     let delta = time.delta_seconds();
 
-    let translation = direction * MOVE_SPEED * delta;
+    let translation = direction * move_speed * delta;
     transform.translation += translation;
 }
