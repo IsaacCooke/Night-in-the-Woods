@@ -1,13 +1,14 @@
-use bevy::{prelude::*, render::camera::ScalingMode};
-use inputs::InputsPlugin;
+use bevy::prelude::*;
+use enemy_cube::EnemyCubePlugin;
 use player::PlayerPlugin;
 
+mod enemy_cube;
 mod inputs;
 mod player;
 
 fn main() {
     App::new()
-        .add_plugins((DefaultPlugins, PlayerPlugin))
+        .add_plugins((DefaultPlugins, PlayerPlugin, EnemyCubePlugin))
         //.add_systems(Startup, setup)
         .run();
 }
