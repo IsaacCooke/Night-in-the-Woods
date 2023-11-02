@@ -39,10 +39,10 @@ fn character_movement(
     time: Res<Time>,
 ) {
     let mut transform = query.single_mut();
-    let mut move_speed 2.5;
+    let mut move_speed: f32 = 2.5;
 
     if keyboard_input.pressed(KeyCode::ShiftLeft) {
-        MOVE_SPEED = 5.0;
+        move_speed = 5.0;
     }
 
     let mut direction = Vec3::ZERO;
