@@ -1,5 +1,6 @@
 use bevy::prelude::*;
 use bevy::render::mesh::shape::Cube;
+use bevy_xpbd_3d::prelude::*;
 
 pub struct PlayerPlugin;
 
@@ -25,11 +26,15 @@ fn setup(mut commands: Commands, mut meshes: ResMut<Assets<Mesh>>) {
 
     // Cube character
     commands
-        .spawn(PbrBundle {
-            mesh: cube_mesh,
-            transform: Transform::from_xyz(0.0, 0.5, 0.0),
-            ..default()
-        })
+        .spawn((
+            RigidBody::Dynamic,
+            Collider::cuboid(1.0, 1.0, 1.0),
+            PbrBundle {
+                mesh: cube_mesh,
+                transform: Transform::from_xyz(3.0, 0.5, 0.0),
+                ..default()
+            },
+        ))
         .insert(CharacterController);
 }
 

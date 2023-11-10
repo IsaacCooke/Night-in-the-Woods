@@ -1,14 +1,24 @@
 use bevy::prelude::*;
+use bevy_xpbd_3d::prelude::*;
 use enemy_cube::EnemyCubePlugin;
-use player::PlayerPlugin;
+use physics::PhysicsPlugin;
+use player_physics::PlayerPhysicsPlugin;
 
 mod enemy_cube;
 mod inputs;
+mod physics;
 mod player;
+mod player_physics;
 
 fn main() {
     App::new()
-        .add_plugins((DefaultPlugins, PlayerPlugin, EnemyCubePlugin))
+        .add_plugins((
+            DefaultPlugins,
+            PhysicsPlugins::default(),
+            EnemyCubePlugin,
+            PhysicsPlugin,
+            PlayerPhysicsPlugin,
+        ))
         //.add_systems(Startup, setup)
         .run();
 }
