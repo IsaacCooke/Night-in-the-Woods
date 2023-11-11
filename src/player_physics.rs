@@ -7,7 +7,6 @@ impl Plugin for PlayerPhysicsPlugin {
     fn build(&self, app: &mut App) {
         app.add_systems(Startup, setup);
         app.add_systems(PhysicsSchedule, movement.before(PhysicsStepSet::BroadPhase));
-        app.run();
     }
 }
 
