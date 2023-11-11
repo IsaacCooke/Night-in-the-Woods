@@ -1,10 +1,12 @@
 use bevy::prelude::*;
 use bevy_xpbd_3d::prelude::*;
 use enemy_cube::EnemyCubePlugin;
+use frame_counter::FrameCounterPlugin;
 use physics::PhysicsPlugin;
 use player_physics::PlayerPhysicsPlugin;
 
 mod enemy_cube;
+mod frame_counter;
 mod inputs;
 mod physics;
 mod player;
@@ -16,6 +18,7 @@ fn main() {
             DefaultPlugins,
             PhysicsPlugins::default(),
             EnemyCubePlugin,
+            FrameCounterPlugin,
             PhysicsPlugin,
             PlayerPhysicsPlugin,
         ))

@@ -2,6 +2,7 @@ use bevy::{
     math::{cubic_splines::CubicCurve, vec3},
     prelude::*,
 };
+use bevy_xpbd_3d::prelude::*;
 
 pub struct EnemyCubePlugin;
 
@@ -21,10 +22,10 @@ fn setup(
     mut materials: ResMut<Assets<StandardMaterial>>,
 ) {
     let points = [[
-        vec3(-6., 0., 0.),
-        vec3(12., 0., 0.),
-        vec3(-12., 0., 0.),
-        vec3(6., 0., 0.),
+        vec3(-6., 1., 1.),
+        vec3(12., 1., 1.),
+        vec3(-12., 1., 1.),
+        vec3(6., 1., 1.),
     ]];
 
     // Make a CubicCurve
@@ -32,6 +33,8 @@ fn setup(
 
     // Spawning a cube to experiment on
     commands.spawn((
+        RigidBody::Dynamic,
+        Collider::cuboid(1.0, 1.0, 1.0),
         PbrBundle {
             mesh: meshes.add(shape::Cube::default().into()),
             material: materials.add(Color::ORANGE.into()),
