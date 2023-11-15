@@ -87,6 +87,7 @@ fn text_update_system(
         if let Some(fps) = diagnostics.get(FrameTimeDiagnosticsPlugin::FPS) {
             if let Some(value) = fps.smoothed() {
                 text.sections[1].value = format!("{value:.2}");
+                println!("{value:.2}");
             }
         }
     }

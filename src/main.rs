@@ -1,12 +1,20 @@
 use bevy::prelude::*;
 use bevy_xpbd_3d::prelude::*;
 use enemy_cube::EnemyCubePlugin;
-use frame_counter::FrameCounterPlugin;
+use environment::bundler::EnvironmentPlugins;
 use physics::PhysicsPlugin;
 use player_physics::PlayerPhysicsPlugin;
+use ui::{button_test::ButtonTestPlugin, frame_counter::FrameCounterPlugin};
 
 mod enemy_cube;
-mod frame_counter;
+mod environment {
+    pub mod bundler;
+    pub mod floor;
+}
+mod ui {
+    pub mod button_test;
+    pub mod frame_counter;
+}
 mod inputs;
 mod physics;
 mod player;
@@ -17,7 +25,9 @@ fn main() {
         .add_plugins((
             DefaultPlugins,
             PhysicsPlugins::default(),
+            ButtonTestPlugin,
             EnemyCubePlugin,
+            EnvironmentPlugins,
             FrameCounterPlugin,
             PhysicsPlugin,
             PlayerPhysicsPlugin,
