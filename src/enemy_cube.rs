@@ -33,7 +33,7 @@ fn setup(
 
     // Spawning a cube to experiment on
     commands.spawn((
-        RigidBody::Dynamic,
+        RigidBody::Static,
         Collider::cuboid(1.0, 1.0, 1.0),
         PbrBundle {
             mesh: meshes.add(shape::Cube::default().into()),
