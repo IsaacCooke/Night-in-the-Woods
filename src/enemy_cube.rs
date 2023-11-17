@@ -9,6 +9,9 @@ pub struct EnemyCubePlugin;
 #[derive(Component)]
 pub struct Curve(CubicCurve<Vec3>);
 
+#[derive(Component)]
+pub struct Enemy;
+
 impl Plugin for EnemyCubePlugin {
     fn build(&self, app: &mut App) {
         app.add_systems(Startup, setup);
@@ -33,6 +36,7 @@ fn setup(
 
     // Spawning a cube to experiment on
     commands.spawn((
+        Enemy,
         RigidBody::Static,
         Collider::cuboid(1.0, 1.0, 1.0),
         PbrBundle {

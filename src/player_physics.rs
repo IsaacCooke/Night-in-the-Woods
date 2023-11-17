@@ -11,7 +11,7 @@ impl Plugin for PlayerPhysicsPlugin {
 }
 
 #[derive(Component)]
-struct Player;
+pub struct Player;
 
 fn setup(
     mut commands: Commands,
