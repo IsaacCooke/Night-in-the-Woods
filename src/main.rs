@@ -31,16 +31,24 @@ fn main() {
 use enemy_cube::Enemy;
 use player_physics::Player;
 
-fn detect_collision(query: Query<(&Player, &Transform)>, enemy_query: Query<(&Enemy, &Transform)>) {
-    let (_, player_transform) = query.single();
+fn detect_collision(
+    mut query: Query<(&mut Player, &Transform)>,
+    enemy_query: Query<(&Enemy, &Transform)>,
+) {
+    let (mut player, player_transform) = query.single_mut();
 
     for (_, enemy_transform) in enemy_query.iter() {
         let collision = player_transform
             .translation
             .distance(enemy_transform.translation)
             < 1.0;
+
         if collision {
-            println!("Collision detected!");
+            if player.health <= 0 {
+                panic!("You are now dead! Congratulations!");
+            }
+            player.health -= 10;
+            println!("{0}", player.health);
         }
     }
 }

@@ -11,7 +11,9 @@ impl Plugin for PlayerPhysicsPlugin {
 }
 
 #[derive(Component)]
-pub struct Player;
+pub struct Player {
+    pub health: i32,
+}
 
 fn setup(
     mut commands: Commands,
@@ -44,7 +46,7 @@ fn setup(
         .with_max_hits(1),
         Restitution::new(0.0).with_combine_rule(CoefficientCombine::Min),
         GravityScale(2.0),
-        Player,
+        Player { health: 100 },
     ));
 
     // Light
